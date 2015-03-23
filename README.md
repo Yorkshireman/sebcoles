@@ -14,3 +14,7 @@ This shows how you can set a Group's :teacher_id to a certain Teacher's :id, or 
 after assigning a Student instance to a student variable, and a Group instance to a group variable:
 
 student.update_attributes(group: group)
+
+
+I think can also do this in the console:
+group.teacher_id = 1
