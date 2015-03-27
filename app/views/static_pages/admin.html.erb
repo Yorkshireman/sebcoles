@@ -2,10 +2,33 @@
 <h3>...where amazing things happen...</h3>
 
 <h4>Unassigned Users</h4>
+<% @users.each do |user| %>
+	<% if user.type == nil %>
+		<p>
+			<%= user.email %>
+		</p>
+	<% end %>
+<% end %>
+
 
 <h4>Classes</h4>
+<% @groups.each do |group| %>
+	<p>
+		<%= group.title %>
+	</p>
+<% end %>
 
 <h4>Students</h4>
+<% @students.each do |student| %>
+	<p>
+		<%= student.email %>
+	</p>
+<% end %>
 
 <h4>Teachers</h4>
+<% @teachers.each do |teacher| %>
+	<p>
+		<%= teacher.email %>
+	</p>
+<% end %>
 

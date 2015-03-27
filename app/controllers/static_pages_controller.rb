@@ -3,5 +3,12 @@ class StaticPagesController < ApplicationController
   end
 
   def admin
+  	@groups = Group.all
+
+  	@users = User.all
+
+  	@students = Student.all
+
+  	@teachers = Teacher.all
   end
 end
