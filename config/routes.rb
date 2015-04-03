@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   
   root 'static_pages#home'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   
   get 'admin' => 'static_pages#admin'
 
   resources :groups
   resources :users
+  resources :students
+  resources :teachers
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
