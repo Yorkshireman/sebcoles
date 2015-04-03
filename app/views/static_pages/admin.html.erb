@@ -10,8 +10,10 @@
 
 		<%= form_for(user) do |f| %>
 			<div class="field">
-    			<%= f.label :type %><br>
-    			<%= f.text_field :type %>
+    			<%= f.label "Student" %>
+    			<%= f.radio_button :type, "Student" %>
+    			<%= f.label "Teacher" %>
+    			<%= f.radio_button :type, "Teacher" %>
   			</div>
   			<div class="actions">
     			<%= f.submit %>
