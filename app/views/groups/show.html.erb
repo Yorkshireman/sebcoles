@@ -5,5 +5,14 @@
   <%= @group.title %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<p>
+	<% @group.students.each do |student| %>
+		<p>
+			<%= student.first_name %>
+			<%= student.last_name %>
+			<%= student.email %>
+		</p>
+	<% end %>
+</p>
+
+<%= link_to 'Back', admin_path %>
