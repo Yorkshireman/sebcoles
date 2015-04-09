@@ -1,10 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<%= @user.first_name %>
-<%= @user.last_name %>
-<%= @user.email %><br>
+<p>
+	Name: <%= @user.first_name %>
+	<%= @user.last_name %>
+</p>
+<p>
+	Email: <%= @user.email %><br>
+</p>
+<p>
+	Classes:<br>
+	<% @user.groups.each do |group| %>
+		<%= link_to group do %>
+			<%= group.title %>
+		<% end %>
+	<% end %>
+</p>
 
-<p>Assign to a Class:</p>
+<p>Assign to a Class</p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
