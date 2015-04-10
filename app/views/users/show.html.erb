@@ -18,6 +18,9 @@
 
 <p>Assign to a Class</p>
 
+<%= form_for @user, url: {action: "assign_to_group"}, html: {class: "form"} do |f| %>
+	<%= collection_select(:student, :group_id, Group.all, :id, :title) %>
+	<%= f.submit "assign_to_group" %>
+<% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', admin_path %>
