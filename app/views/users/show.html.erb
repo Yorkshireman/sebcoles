@@ -18,7 +18,7 @@
 
 <p>Assign to a Class</p>
 
-<%= form_for @user, url: { action: "assign_to_group"}, html: {class: "form"} do |f| %>
+<%= form_for @user, url_for: { action: "assign_to_group" }, html: {class: "form"} do |f| %>
 	<%= collection_select( :student, :group_id, Group.all, :id, :title, include_blank: true ) %>
 	<%= f.submit "Assign" %>
 <% end %>

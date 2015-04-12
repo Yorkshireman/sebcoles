@@ -8,8 +8,8 @@ class StudentsController < UsersController
 	end
 
 	def assign_to_group
-		@user=User.find(params[:user])
-		@group=Group.find(params[:group])
+		#@user=User.find(params[:user])
+		#@group=Group.find(params[:title])
 		@user.groups << @group
 	end
 
