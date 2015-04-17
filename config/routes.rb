@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :users
   resources :students
-  patch 'assign_to_group' => 'students#assign_to_group'
+  post 'assign_to_group' => 'students#assign_to_group'
   resources :teachers
 
   # The priority is based upon order of creation: first created -> highest priority.

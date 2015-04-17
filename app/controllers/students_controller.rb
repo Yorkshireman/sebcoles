@@ -8,9 +8,11 @@ class StudentsController < UsersController
 	end
 
 	def assign_to_group
-		#@user=User.find(params[:user])
-		#@group=Group.find(params[:title])
-		@user.groups << @group
+		@user=User.find(params[:user_id])
+		@group=Group.find(params[:group_id])
+		@user.groups << @group unless @user.groups.include? @group
+		@user.save!
+		redirect_to user_path @user
 	end
 
 end
