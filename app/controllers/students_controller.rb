@@ -15,4 +15,12 @@ class StudentsController < UsersController
 		redirect_to user_path @user
 	end
 
+	def remove_from_group
+		@user=User.find(params[:user_id])
+		@group=Group.find(params[:group_id])
+		@user.groups.delete @group
+		@user.save!
+		redirect_to user_path @user
+	end
+
 end

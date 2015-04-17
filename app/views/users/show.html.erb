@@ -13,6 +13,13 @@
 		<%= link_to group do %>
 			<%= group.title %>
 		<% end %>
+
+		<%= form_tag remove_from_group_path do %>
+			<%= hidden_field_tag :user_id, @user.id %>
+			<%= hidden_field_tag :group_id, group.id %>
+			<%= submit_tag "Remove from this class" %>
+		<% end %>
+
 	<% end %>
 </p>
 
