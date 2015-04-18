@@ -36,8 +36,7 @@
 <% @students.each do |student| %>
 	<p>
 		<%= link_to student do %>
-			<%= student.first_name %>
-			<%= student.last_name %>
+			<%= student.full_name %>
 		<% end %>
 
 		<%= student.email %>
@@ -47,9 +46,10 @@
 <h4>Teachers</h4>
 <% @teachers.each do |teacher| %>
 	<p>
-		<%= teacher.first_name %>
-		<%= teacher.last_name %>
-		<%= teacher.email %>
+		<%= link_to teacher do %>
+			<%= teacher.full_name %>
+			<%= teacher.email %>
+		<% end %>
 	</p>
 <% end %>
 

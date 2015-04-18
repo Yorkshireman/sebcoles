@@ -15,17 +15,19 @@
 
 <% elsif @group.teacher != nil %>
 	<p>Teacher:</p>
+	
 	<p>
+		
 		<%= link_to user_path @group.teacher do %>
-			<%= @group.teacher.first_name %> <%= @group.teacher.last_name %>
+			<%= @group.teacher.full_name %>
 		<% end %>
 
 		<%= form_tag unassign_teacher_path do %>
 			<%= hidden_field_tag :group_id, @group.id %>
 			<%= hidden_field_tag :teacher_id, @group.teacher.id %>
 			<%= submit_tag "Unassign Teacher", data: { confirm: "Are you sure?" } %>
-
 		<% end %>
+	
 	</p>
 
 <%end%>
@@ -36,8 +38,7 @@
 <p>
 	<% @group.students.each do |student| %>
 		<p>
-			<%= student.first_name %>
-			<%= student.last_name %>
+			<%= student.full_name %>
 			<%= student.email %>
 		</p>
 	<% end %>
