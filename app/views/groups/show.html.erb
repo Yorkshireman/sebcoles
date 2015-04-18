@@ -5,6 +5,34 @@
   <%= @group.title %>
 </p>
 
+<% if @group.teacher == nil %>
+	<p>This class does not currently have a teacher.</p>
+	
+	<%= form_for @group do %>
+		<%= collection_select(:group, :teacher_id, Teacher.all, :id, :full_name, {:prompt => "Select a teacher"}) %>
+		<%= submit_tag "Update" %>
+	<% end %>
+
+<% elsif @group.teacher != nil %>
+	<p>Teacher:</p>
+	<p>
+		<%= link_to user_path @group.teacher do %>
+			<%= @group.teacher.first_name %> <%= @group.teacher.last_name %>
+		<% end %>
+
+		<%= form_tag unassign_teacher_path do %>
+			<%= hidden_field_tag :group_id, @group.id %>
+			<%= hidden_field_tag :teacher_id, @group.teacher.id %>
+			<%= submit_tag "Unassign Teacher", data: { confirm: "Are you sure?" } %>
+
+		<% end %>
+	</p>
+
+<%end%>
+
+<p>
+	Students:
+</p>
 <p>
 	<% @group.students.each do |student| %>
 		<p>

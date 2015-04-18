@@ -42,13 +42,20 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to admin_path, notice: 'Group was successfully updated.' }
+        format.html { redirect_to group_path, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def unassign_teacher
+    @group = Group.find(params[:group_id])
+    @group.teacher = nil
+    @group.save!
+    redirect_to group_path @group
   end
 
   # DELETE /groups/1
@@ -69,6 +76,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:title)
+      params.require(:group).permit(:title, :teacher_id, :group_id)
     end
 end

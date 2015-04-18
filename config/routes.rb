@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :students
   post 'assign_to_group' => 'students#assign_to_group' # Could have been 'patch', but default in the controller method is 'post', so I left the method as default and changed this route to 'post'. Doesn't NEED to be patch.
   post 'remove_from_group' => 'students#remove_from_group'
+  post 'unassign_teacher' => 'groups#unassign_teacher'
   resources :teachers
 
   # The priority is based upon order of creation: first created -> highest priority.
