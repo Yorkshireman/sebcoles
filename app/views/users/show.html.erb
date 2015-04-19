@@ -26,7 +26,7 @@
 
 <%= form_tag assign_to_group_path do %>
 	<%= hidden_field_tag :user_id, @user.id %>
-	<%= select_tag :group_id, options_from_collection_for_select(Group.all, "id", "title") %>
+	<%= select_tag :group_id, options_from_collection_for_select(Group.all, "id", "title"), include_blank: true %>
 	<%= submit_tag "Assign to Class" %>
 <% end %>
 
