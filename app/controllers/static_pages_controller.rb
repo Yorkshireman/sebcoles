@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+	before_action :admin?, only: [:admin]
+
   def home
   end
 
@@ -11,4 +13,13 @@ class StaticPagesController < ApplicationController
 
   	@teachers = Teacher.all
   end
+
+  private
+
+  def admin?
+  	unless current_user.admin
+  		redirect_to root_path, notice: "You must be an admin to view this page"
+  	end
+  end
+
 end
