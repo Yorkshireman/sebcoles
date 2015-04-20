@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403095103) do
+ActiveRecord::Schema.define(version: 20150420113927) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "title"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 20150403095103) do
     t.integer "group_id",   null: false
     t.integer "student_id", null: false
   end
+
+  create_table "testimonials", force: :cascade do |t|
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "student_id"
+  end
+
+  add_index "testimonials", ["student_id"], name: "index_testimonials_on_student_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
