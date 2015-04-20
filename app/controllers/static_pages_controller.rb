@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 	before_action :admin?, only: [:admin]
 
   def home
+    @testimonials = Testimonial.all
   end
 
   def admin

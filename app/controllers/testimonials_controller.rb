@@ -1,5 +1,7 @@
 class TestimonialsController < ApplicationController
   before_action :set_testimonial, only: [:show, :edit, :update, :destroy]
+  before_action :user_signed_in?, except: [:index]
+  before_action :student?, only: [:new]
 
   # GET /testimonials
   # GET /testimonials.json
@@ -28,7 +30,7 @@ class TestimonialsController < ApplicationController
 
     respond_to do |format|
       if @testimonial.save
-        format.html { redirect_to @testimonial, notice: 'Testimonial was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Testimonial was successfully created. Thankyou!' }
         format.json { render :show, status: :created, location: @testimonial }
       else
         format.html { render :new }
@@ -71,4 +73,13 @@ class TestimonialsController < ApplicationController
     def testimonial_params
       params.require(:testimonial).permit(:content)
     end
+
+    def student?
+      if user_signed_in? && current_user.type == "Student"
+        return true
+      else
+        redirect_to root_path, notice: "You must be a student to do this."
+      end
+    end
+
 end
