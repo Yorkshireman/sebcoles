@@ -1,5 +1,5 @@
-<h1>Admin Page</h1>
-<h3>...where amazing things happen...</h3>
+<h1>Admin Page<small>...where amazing things happen...</small></h1>
+
 
 <h4>Unassigned Users</h4>
 <% @users.each do |user| %>
@@ -16,40 +16,45 @@
     			<%= f.radio_button :type, "Teacher" %>
   			</div>
   			<div class="actions">
-    			<%= f.submit %>
+    			<%= f.submit class: "btn btn-default" %>
   			</div>
 		<% end %>
 	<% end %>
 <% end %>
 
+<div class="row">
+	<div class="col-md-4">
+		<h4>Classes</h4>
+		<% @groups.each do |group| %>
+			<p>
+				<%= link_to group.title, group %>
+			</p>
 
-<h4>Classes</h4>
-<% @groups.each do |group| %>
-	<p>
-		<%= link_to group.title, group %>
-	</p>
-
-<% end %>
-<%= link_to 'Create a New Class', new_group_path %>
-
-<h4>Students</h4>
-<% @students.each do |student| %>
-	<p>
-		<%= link_to student do %>
-			<%= student.full_name %>
 		<% end %>
+		<%= link_to 'Create a New Class', new_group_path, class: "btn btn-default" %>
+	</div>
+	<div class="col-md-4">
+		<h4>Students</h4>
+		<% @students.each do |student| %>
+			<p>
+				<%= link_to student do %>
+					<%= student.full_name %>
+				<% end %>
 
-		<%= student.email %>
-	</p>
-<% end %>
-
-<h4>Teachers</h4>
-<% @teachers.each do |teacher| %>
-	<p>
-		<%= link_to teacher do %>
-			<%= teacher.full_name %>
-			<%= teacher.email %>
+				<%= student.email %>
+			</p>
 		<% end %>
-	</p>
-<% end %>
+	</div>
+	<div class="col-md-4">
+		<h4>Teachers</h4>
+		<% @teachers.each do |teacher| %>
+			<p>
+				<%= link_to teacher do %>
+					<%= teacher.full_name %>
+					<%= teacher.email %>
+				<% end %>
+			</p>
+		<% end %>
+	</div>
+</div>
 
