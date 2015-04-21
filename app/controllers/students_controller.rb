@@ -23,4 +23,11 @@ class StudentsController < UsersController
 		redirect_to user_path @user
 	end
 
+	def assign_as_teacher
+		@user = User.find(params[:user_id])
+		@user.update_attributes(type: "Teacher")
+		@user.save
+		redirect_to admin_path, notice: "They are now a Teacher" 
+	end
+
 end

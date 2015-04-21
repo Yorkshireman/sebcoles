@@ -7,6 +7,24 @@
 	Email: <%= @user.email %><br>
 </p>
 <p>
+	Currently Assigned as a <%=@user.type%>
+</p>
+<p>
+	Wrongly Assigned?
+	<% if teacher? %>
+		<%= form_tag assign_as_student_path do %>
+			<%= hidden_field_tag :user_id, @user.id %>
+			<%= submit_tag "Assign as a Student", data: { confirm: "Are you sure?" } %>
+		<% end %>
+	<% end %>
+	<% if student? %>
+		<%= form_tag assign_as_teacher_path do %>
+			<%= hidden_field_tag :user_id, @user.id %>
+			<%= submit_tag "Assign as a Teacher", data: { confirm: "Are you sure?" } %>
+		<% end %>
+	<% end %>
+</p>
+<p>
 	Classes:<br>
 	<% @user.groups.each do |group| %>
 		<%= link_to group do %>
@@ -16,7 +34,7 @@
 		<%= form_tag remove_from_group_path do %>
 			<%= hidden_field_tag :user_id, @user.id %>
 			<%= hidden_field_tag :group_id, group.id %>
-			<%= submit_tag "Remove from this class" %>
+			<%= submit_tag "Remove from this class", data: { confirm: "Are you sure?" } %>
 		<% end %>
 
 	<% end %>

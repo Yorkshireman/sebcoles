@@ -11,4 +11,12 @@ module StaticPagesHelper
   	array.count > 0
 	end
 
+  def student?
+    @user.type == "Student"
+  end
+
+  def teacher?
+    @user.type == "Teacher"
+  end
+
 end

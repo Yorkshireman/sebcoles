@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :testimonials
 
   root 'static_pages#home'
 
@@ -11,10 +9,14 @@ Rails.application.routes.draw do
   resources :groups
   resources :users
   resources :students
+  resources :teachers
+  resources :testimonials
   post 'assign_to_group' => 'students#assign_to_group' # Could have been 'patch', but default in the controller method is 'post', so I left the method as default and changed this route to 'post'. Doesn't NEED to be patch.
   post 'remove_from_group' => 'students#remove_from_group'
   post 'unassign_teacher' => 'groups#unassign_teacher'
-  resources :teachers
+  post 'assign_as_student' => 'teachers#assign_as_student'
+  post 'assign_as_teacher' => 'students#assign_as_teacher'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

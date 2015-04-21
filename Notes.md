@@ -25,3 +25,7 @@ I think I need a belongs_to and a HABTM on the same model (Materials model). Thi
 http://stackoverflow.com/questions/13959955/belongs-to-and-has-and-belongs-to-many-to-the-same-table-in-rails
 
 Goudy Text Family
+
+========================================================
+When a User is a Teacher and is assigned to a class, when you re-assign them to be a Student instead, they are not longer listed as being in that class, but when you assign them back to being a Teacher, they are shown as still being in that class. Bug? Dead database data when reassigning a User from a Teacher to a Student (and vice-versa?)?
+========================================================
