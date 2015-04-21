@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'unassign_teacher' => 'groups#unassign_teacher'
   post 'assign_as_student' => 'teachers#assign_as_student'
   post 'assign_as_teacher' => 'students#assign_as_teacher'
+  post 'add_student' => 'groups#add_student'
+  post 'remove_student_from_group' => 'groups#remove_student_from_group'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

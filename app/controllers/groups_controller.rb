@@ -68,6 +68,22 @@ class GroupsController < ApplicationController
     end
   end
 
+  def add_student
+    @student=Student.find(params[:student_id])
+    @group=Group.find(params[:group_id])
+    @group.students << @student unless @group.students.include? @student
+    @group.save!
+    redirect_to group_path @group
+  end
+
+  def remove_student_from_group
+    @student=Student.find(params[:student_id])
+    @group=Group.find(params[:group_id])
+    @student.groups.delete @group
+    @student.save!
+    redirect_to group_path @group
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
