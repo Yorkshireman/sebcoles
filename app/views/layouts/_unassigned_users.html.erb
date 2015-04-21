@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Unassigned Users</h4>
+	</div>
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>Email</th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<% if user.type == nil %>
+					<tr>
+						<td><%= user.full_name %></td>
+						<td><%= user.email %></td>
+						<td>
+							<%= form_for(user) do |f| %>
+								<div class="field" id="unassigned_users_select_field">
+				    			<%= f.label "Student" %>
+				    			<%= f.radio_button :type, "Student" %>
+				    			<%= f.label "Teacher" %>
+				    			<%= f.radio_button :type, "Teacher" %>
+				  			</div>
+				  			<div class="actions" id="unassigned_users_submit_button">
+				    			<%= f.submit class: "btn btn-default" %>
+				  			</div>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
