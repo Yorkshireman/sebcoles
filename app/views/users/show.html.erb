@@ -1,11 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-	Name: <%= @user.full_name %>
-</p>
-<p>
-	Email: <%= @user.email %><br>
-</p>
+<h3><%= @user.full_name %><small> <%= @user.email %></small></h3>
+
 <p>
 	Currently Assigned as a <%=@user.type%>
 </p>
@@ -40,7 +36,13 @@
 	<% end %>
 </p>
 
-<p>Assign to a Class</p>
+<p>Assign to 
+<% if @user.groups.count > 0 %>
+	Another Class
+<% else %>
+	a Class
+<% end %>
+</p>
 
 <%= form_tag assign_to_group_path do %>
 	<%= hidden_field_tag :user_id, @user.id %>

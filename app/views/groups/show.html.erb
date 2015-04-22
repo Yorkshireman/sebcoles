@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @group.title %>
-  <%= link_to "Edit", edit_group_path %>
-</p>
+<h3><%= @group.title %></h3>
+<%= link_to "Edit", edit_group_path %>
 
 <% if @group.teacher == nil %>
 	<p>This class does not currently have a teacher.</p>
@@ -15,36 +12,45 @@
 	<% end %>
 
 <% elsif @group.teacher != nil %>
-	<p>
+	<h4>
 		Teacher: <%= link_to user_path @group.teacher do %>
 			<%= @group.teacher.full_name %>
 		<% end %>
-
-		<%= form_tag unassign_teacher_path do %>
-			<%= hidden_field_tag :group_id, @group.id %>
-			<%= hidden_field_tag :teacher_id, @group.teacher.id %>
-			<%= submit_tag "Unassign Teacher", data: { confirm: "Are you sure?" } %>
-		<% end %>
-	</p>
+	</h4>
+	<%= form_tag unassign_teacher_path do %>
+		<%= hidden_field_tag :group_id, @group.id %>
+		<%= hidden_field_tag :teacher_id, @group.teacher.id %>
+		<%= submit_tag "Unassign Teacher", data: { confirm: "Are you sure?" } %>
+	<% end %>
+	
 <%end%>
 
 <% if @group.students.count > 0 %>
-	<p>
-		Students:
-	</p>
-	<p>
-		<% @group.students.each do |student| %>
-			<p>
-				<%= student.full_name %>
-				<%= student.email %>
-				<%= form_tag remove_student_from_group_path do %>
-					<%= hidden_field_tag :group_id, @group.id %>
-					<%= hidden_field_tag :student_id, student.id %>
-					<%= submit_tag "Remove", data: { confirm: "Are you sure?" } %>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Students</h4>
+		</div>
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Classes</th>
+			</thead>
+			<tbody>
+				<% @group.students.each do |student| %>
+					<tr>
+						<td>
+							<%= link_to student do %>
+								<%= student.full_name %>
+							<% end %>
+						</td>
+						<td><%= student.email %></td>
+						<td><%= student.groups.count %></td>
+					</tr>
 				<% end %>
-			</p>
-		<% end %>
-	</p>
+			</tbody>
+		</table>
+	</div>
 <% end %>
 
 <% unless @group.students.count > 0 %>
@@ -54,7 +60,7 @@
 <%= form_tag add_student_path do %>
 	<%= hidden_field_tag :group_id, @group.id %>
 	<%= select_tag :student_id, options_from_collection_for_select(Student.all, :id, :full_name), include_blank: true %>
-	<%= submit_tag "Add" %>
+	<%= submit_tag "Add Student" %>
 <% end %>
 
 <%= link_to 'Back to Admin Page', admin_path %>
