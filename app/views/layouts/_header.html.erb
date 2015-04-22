@@ -23,7 +23,7 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav">
-        <% if user_signed_in? and verified_user? and assigned_to_a_group? %>
+        <% if user_signed_in? and verified_user? and (student_assigned_to_a_group? || current_user.admin? || teacher?) %>
           <li><%= link_to "Materials", materials_path %></li>
         <% end %>
       </ul>
