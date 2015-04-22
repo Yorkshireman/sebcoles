@@ -22,6 +22,11 @@
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% end %>
       </ul>
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? and verified_user? and assigned_to_a_group? %>
+          <li><%= link_to "Materials", materials_path %></li>
+        <% end %>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? and current_user.admin? %>
           <li><%= link_to "Admin", admin_path %></li>

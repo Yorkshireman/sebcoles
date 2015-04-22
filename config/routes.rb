@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :materials
+
   root 'static_pages#home'
 
   devise_for :users, :controllers => { registrations: 'registrations' }

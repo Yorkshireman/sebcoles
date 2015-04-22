@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420113927) do
+ActiveRecord::Schema.define(version: 20150422145819) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "title"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20150420113927) do
     t.integer "group_id",   null: false
     t.integer "student_id", null: false
   end
+
+  create_table "materials", force: :cascade do |t|
+    t.string   "title"
+    t.string   "level"
+    t.text     "description"
+    t.string   "link"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
+  add_index "materials", ["user_id"], name: "index_materials_on_user_id"
 
   create_table "testimonials", force: :cascade do |t|
     t.text     "content"
