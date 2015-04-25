@@ -38,7 +38,13 @@
 		<% end %>
 	</p>
 <% else %>
-	<p>This teacher has no classes.</p>
+	<p>This 
+		<% if @user.type == "Teacher" %>
+			teacher 
+		<% elsif @user.type == "Student" %>
+			student
+		<% end %>
+	has no classes.</p>
 <% end %>
 
 <p>Assign to 
