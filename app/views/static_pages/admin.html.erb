@@ -5,88 +5,12 @@
 <% end %>
 
 <div class="row">
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>Classes</h4>
-			</div>
-			<table class="table">
-				<thead>
-					<th>Title</th>
-					<th>Students</th>
-				</thead>
-				<tbody>
-					<% @groups.each do |group| %>
-						<tr>
-							<td>
-								<%= link_to group do %>
-									<%= group.title %>
-								<% end %>
-							</td>
-							<td><%= group.students.count %></td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
-		<%= link_to 'Create a New Class', new_group_path, class: "btn btn-default" %>		
-	</div>
 	
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>Students</h4>
-			</div>
-			<table class="table">
-				<thead>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Classes</th>
-				</thead>
-				<tbody>
-					<% @students.each do |student| %>
-						<tr>
-							<td>
-								<%= link_to student do %>
-									<%= student.full_name %>
-								<% end %>
-							</td>
-							<td><%= student.email %></td>
-							<td><%= student.groups.count %></td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>		
-	</div>
+	<%= render('layouts/classes') %>
+	
+	<%= render('layouts/students') %>
 
-	<div class="col-lg-4">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>Teachers</h4>
-			</div>
-			<table class="table">
-				<thead>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Classes</th>
-				</thead>
-				<tbody>
-					<% @teachers.each do |teacher| %>
-						<tr>
-							<td>
-								<%= link_to teacher do %>
-									<%= teacher.full_name %>
-								<% end %>
-							</td>
-							<td><%= teacher.email %></td>
-							<td><%= teacher.groups.count %></td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>		
-	</div>
+	<%= render('layouts/teachers') %>
 
 </div>
 

@@ -1,0 +1,26 @@
+<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Classes</h4>
+		</div>
+		<table class="table">
+			<thead>
+				<th>Title</th>
+				<th>Students</th>
+			</thead>
+			<tbody>
+				<% @groups.each do |group| %>
+					<tr>
+						<td>
+							<%= link_to group do %>
+								<%= group.title %>
+							<% end %>
+						</td>
+						<td><%= group.students.count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<%= link_to 'Create a New Class', new_group_path, class: "btn btn-default" %>		
+</div>

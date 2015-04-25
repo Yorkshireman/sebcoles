@@ -1,0 +1,27 @@
+<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Teachers</h4>
+		</div>
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Classes</th>
+			</thead>
+			<tbody>
+				<% @teachers.each do |teacher| %>
+					<tr>
+						<td>
+							<%= link_to teacher do %>
+								<%= teacher.full_name %>
+							<% end %>
+						</td>
+						<td><%= teacher.email %></td>
+						<td><%= teacher.groups.count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>		
+</div>
