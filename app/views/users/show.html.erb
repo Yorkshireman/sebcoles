@@ -7,13 +7,12 @@
 </p>
 <p>
 	Wrongly Assigned?
-	<% if teacher? %>
+	<% if @user.type == "Teacher" %>
 		<%= form_tag assign_as_student_path do %>
 			<%= hidden_field_tag :user_id, @user.id %>
 			<%= submit_tag "Assign as a Student", data: { confirm: "Are you sure?" } %>
 		<% end %>
-	<% end %>
-	<% if student? %>
+	<% elsif @user.type == "Student" %>
 		<%= form_tag assign_as_teacher_path do %>
 			<%= hidden_field_tag :user_id, @user.id %>
 			<%= submit_tag "Assign as a Teacher", data: { confirm: "Are you sure?" } %>
