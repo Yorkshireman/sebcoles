@@ -13,19 +13,19 @@
 
   <div class="field form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.text_field :title, required: true, class: 'form-control' %>
   </div>
   <div class="field form-group">
     <%= f.label :level %><br>
-    <%= f.text_field :level, class: 'form-control' %>
+    <%= select :material, :level, options_for_select(['All', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'], @material.level), {}, { required: true, class: "form-control" } %>
   </div>
   <div class="field form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description, class: 'form-control' %>
+    <%= f.text_area :description, class: 'form-control', rows: "4" %>
   </div>
   <div class="field form-group">
     <%= f.label :link %><br>
-    <%= f.text_field :link, class: 'form-control' %>
+    <%= f.text_field :link, required: true, class: 'form-control' %>
   </div>
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
