@@ -1,9 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="testimonial-show-wrapper">
+	<p id="notice"><%= notice %></p>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title"><%= @testimonial.student.full_name %></h4>
+		</div>
+		<div class="panel-body">
+			<p><%= @testimonial.content %></p>
+			<%= link_to 'Edit', edit_testimonial_path(@testimonial), class: "btn btn-default", role: 'button' %>
+		</div>
+	</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @testimonial.content %>
-</p>
-
-<%= link_to 'Edit', edit_testimonial_path(@testimonial) %> |
-<%= link_to 'Back', testimonials_path %>
+	<%= link_to 'Back', root_path, class: "btn btn-default", role: "button" %>
+</div>

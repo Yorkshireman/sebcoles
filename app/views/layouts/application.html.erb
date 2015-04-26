@@ -11,10 +11,6 @@
 	<div class="container">
 		
 		<%= render("layouts/header") %>
-
-	 	<% if flash[:notice] %>
-			<p class="alert"><%= flash[:notice] %></p>
-		<% end %>
 		
 		<% if flash[:alert] %>
 			<p class="alert"><%= flash[:alert] %></p>
@@ -23,6 +19,7 @@
 		<%= yield %>
 
 		<% if user_signed_in? %>
+			<br>
 			<br>
 	 		<p> (Logged in as: <%= current_user.full_name %>)</p>
 	 	<% end %>

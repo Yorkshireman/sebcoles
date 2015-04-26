@@ -1,14 +1,20 @@
 <h3>Testimonials</h3>
 
 <% @testimonials.each do |testimonial| %>
-  <h4><%= testimonial.student.full_name %></h4>
-    <p><%= testimonial.content %></p>
-    <td><%= link_to 'Show', testimonial %></td>
-    <td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
-    <td><%= link_to 'Destroy', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<div class="panel panel-default">
+	  	<div class="panel-heading">
+	  		<h4 class="panel-title"><%= testimonial.student.full_name %></h4>
+	  	</div>
+	    <div class="panel-body">
+	    	<p><%= testimonial.content %></p>
+		    <td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
+		    <td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    	</div>
+    </div>
 <% end %>
+
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'New Testimonial', new_testimonial_path %>
+  <%= link_to 'Deja Tu Opinión', new_testimonial_path, class: "btn btn-primary", role: "button" %>
 <% end %>
