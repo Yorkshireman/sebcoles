@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require static_pages.scss
+ *= require mediaqueries.scss
  */
 
 @import "bootstrap-sprockets";
