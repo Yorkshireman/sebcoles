@@ -16,25 +16,28 @@
 
 $headings-font-family: 'Sorts Mill Goudy', serif;
 $font-family-base: serif;
+@mixin normal-text {
+	font-size: 15px;
+	letter-spacing: 0.1px;
+}
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 @import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy);
 
-// p, a, th, td {
-// 	font-size: 15px;
-// 	letter-spacing: 0.1px;
-// }
 
 body {
 	font-family: $font-family-base;
 }
 
-p, a {
-	font-size: 15px;
-	letter-spacing: 0.1px;
-}
+p, a, tr, .panel-body { @include normal-text; }
+
+
+
+
+
+
 
 .navbar {
 	padding-top: 0;
