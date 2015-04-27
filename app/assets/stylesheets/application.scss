@@ -22,7 +22,16 @@ $font-family-base: serif;
 
 @import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy);
 
-p, a, th, td {
+// p, a, th, td {
+// 	font-size: 15px;
+// 	letter-spacing: 0.1px;
+// }
+
+body {
+	font-family: $font-family-base;
+}
+
+p, a {
 	font-size: 15px;
 	letter-spacing: 0.1px;
 }
