@@ -17,12 +17,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy);
+
 .navbar {
+	font-family: 'Sorts Mill Goudy', serif;
 	padding-top: 0;
 }
 
 .navbar-brand {
-	height: 55px;
 	padding: 0;
 	padding-left: 8px;
 }
