@@ -19,6 +19,16 @@
 
 @import url(http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy);
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Sorts Mill Goudy', serif;
+}
+
+p, a {
+	font-family: serif;
+	font-size: 1.1em;
+	letter-spacing: 0.1px;
+}
+
 .navbar {
 	font-family: 'Sorts Mill Goudy', serif;
 	padding-top: 0;
