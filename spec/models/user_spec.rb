@@ -17,6 +17,10 @@ describe User do
 	it "is invalid without a last_name" do
 		expect(FactoryGirl.build(:user, last_name: nil)).to_not be_valid
 	end
+
+	it "is invalid without a value for admin" do
+		expect(FactoryGirl.build(:user, admin: nil)).to_not be_valid
+	end
 	
 	it "returns a user's full name as a string" do
 		user = FactoryGirl.create(:user, first_name: "John", last_name: "Smith")
