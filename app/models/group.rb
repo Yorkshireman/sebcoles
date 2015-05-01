@@ -4,6 +4,6 @@ class Group < ActiveRecord::Base
 	
 	has_and_belongs_to_many :students, join_table: "groups_students"
 	
-	validates :title, presence: :true, length: {maximum: 60}
+	validates :title, presence: :true, length: { maximum: 60 }
 
 end

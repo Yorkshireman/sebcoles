@@ -9,4 +9,6 @@ describe Group do
 		expect(FactoryGirl.build(:group, title: nil)).to_not be_valid
 	end
 
+	it "is invalid with a title longer than 60 characters"
+
 end
