@@ -12,4 +12,6 @@ describe Group do
 	it "is invalid with a title longer than 60 characters" do
 		expect(FactoryGirl.build(:group, title: "jdhtyruejdhghtuwi12ksjwhdbcnfhj5ktlgkfid5jdhdjkhsdfkohsf98768923746982374ihgkjhbaskhfbweokb")).to_not be_valid
 	end
+
+	it "is unique"
 end

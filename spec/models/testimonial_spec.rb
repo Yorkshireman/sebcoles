@@ -10,4 +10,6 @@ describe Testimonial do
 		expect(FactoryGirl.build(:testimonial, content: nil)).to_not be_valid
 	end
 
+	it "is unique"
+
 end
