@@ -23,8 +23,10 @@ def verified_user? #checks that the current_user is either a student, teacher or
 	current_user.type == "Student" || current_user.type == "Teacher" || current_user.admin
 end
 
-def student_assigned_to_a_class?
+def current_user_assigned_to_a_class?
 	current_user.groups.count > 0
+rescue NoMethodError # Happens when current_user isn't assigned to any groups
+	return false
 end
 
 end
