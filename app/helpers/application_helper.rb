@@ -19,26 +19,12 @@ module ApplicationHelper
     current_user.type == "Teacher"
   end
 
-	def verified_user? #checks that the current_user is either a student, teacher or an admin
-		current_user.type == "Student" || current_user.type == "Teacher" || current_user.admin
-	end
+def verified_user? #checks that the current_user is either a student, teacher or an admin
+	current_user.type == "Student" || current_user.type == "Teacher" || current_user.admin
+end
 
-	def student_assigned_to_a_group? #checks if the current_user is a student currently assigned to a group
-		assigned = "no"
-
-		Group.all.each do |group|
-			array = []
-			group.students.each do |student|
-				array << student
-			end
-
-			if (array.include? current_user) == true
-				assigned = "yes"
-			end
-
-		end
-
-		assigned == "yes"
-	end
+def student_assigned_to_a_class?
+	current_user.groups.count > 0
+end
 
 end
