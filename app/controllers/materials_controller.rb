@@ -1,5 +1,6 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy]
+  before_action :user_is_admin_or_teacher_or_student_with_a_class, only: [:index, :show]
 
   # GET /materials
   # GET /materials.json
@@ -60,6 +61,7 @@ class MaterialsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,4 +73,5 @@ class MaterialsController < ApplicationController
     def material_params
       params.require(:material).permit(:title, :level, :description, :link)
     end
+
 end

@@ -19,14 +19,12 @@ module ApplicationHelper
     current_user.type == "Teacher"
   end
 
-def verified_user? #checks that the current_user is either a student, teacher or an admin
-	current_user.type == "Student" || current_user.type == "Teacher" || current_user.admin
-end
+	def verified_user? #checks that the current_user is either a student, teacher or an admin
+		current_user.type == "Student" || current_user.type == "Teacher" || current_user.admin
+	end
 
-def current_user_assigned_to_a_class?
-	current_user.groups.count > 0
-rescue NoMethodError # Happens when current_user isn't assigned to any groups
-	return false
-end
+	def user_is_admin_or_teacher_or_student_with_a_class
+		user_signed_in? and ( current_user.admin || current_user.type == "Teacher" || ( (current_user.type == "Student") and current_user.groups.any? ) )
+	end
 
 end
