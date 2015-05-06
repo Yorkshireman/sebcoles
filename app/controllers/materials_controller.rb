@@ -1,6 +1,13 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy]
-  before_action :user_is_admin_or_teacher_or_student_with_a_class, only: [:index, :show]
+  before_action :require_authorisation_to_view_materials, only: [:index, :show]
+
+
+  def require_authorisation_to_view_materials
+    unless user_signed_in? && current_user.can_view_materials?
+      redirect_to root_path, alert: "You are not authorised to view the Materials page."
+    end
+  end
 
   # GET /materials
   # GET /materials.json
