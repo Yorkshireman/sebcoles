@@ -4,4 +4,6 @@ class Material < ActiveRecord::Base
 	validates :level, presence: :true
 	validates :link, presence: :true
 
+	scope :level, -> (x) { where("level == ?", x) }
+
 end

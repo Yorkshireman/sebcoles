@@ -10,7 +10,7 @@
 				<th>Classes</th>
 			</thead>
 			<tbody>
-				<% @teachers.each do |teacher| %>
+				<% @teachers.order_by_first_name.each do |teacher| %>
 					<tr>
 						<td>
 							<%= link_to teacher do %>

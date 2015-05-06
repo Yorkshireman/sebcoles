@@ -9,7 +9,7 @@
 				<th>Students</th>
 			</thead>
 			<tbody>
-				<% @groups.each do |group| %>
+				<% @groups.order_by_title.each do |group| %>
 					<tr>
 						<td>
 							<%= link_to group do %>
