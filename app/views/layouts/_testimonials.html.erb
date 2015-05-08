@@ -10,7 +10,9 @@
 		    <% if user_signed_in? && current_user.testimonial_owner?(testimonial) %>
 		    	<td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
 		    <% end %>
-		    <td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this testimonial? This action cannot be undone.' } %></td>
+		    <% if user_signed_in? && (current_user.testimonial_owner?(testimonial) || current_user.admin) %>
+		    	<td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this testimonial? This action cannot be undone.' } %></td>
+    		<% end %>
     	</div>
     </div>
 <% end %>

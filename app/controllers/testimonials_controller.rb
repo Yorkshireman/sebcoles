@@ -3,11 +3,17 @@ class TestimonialsController < ApplicationController
   before_action :user_signed_in?, except: [:index]
   before_action :student?, only: [:new]
   before_action :can_edit_testimonial?, only: [:edit]
-
+  before_action :can_delete_testimonial?, only: [:destroy]
 
   def can_edit_testimonial?
     unless user_signed_in? && current_user.testimonial_owner?(@testimonial)
       redirect_to root_path, alert: 'You can only edit your own testimonial (cheeky!)'
+    end
+  end
+
+  def can_delete_testimonial?
+    unless user_signed_in? && (current_user.testimonial_owner?(@testimonial) || current_user.admin?)
+      redirect_to root_path, alert: 'You can only delete your own testimonial!'
     end
   end
 
