@@ -7,10 +7,10 @@
 	  	</div>
 	    <div class="panel-body">
 	    	<p><%= testimonial.content %></p>
-		    <% if user_signed_in? && testimonial.student_id == current_user.id %>
+		    <% if user_signed_in? && current_user.testimonial_owner?(testimonial) %>
 		    	<td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
 		    <% end %>
-		    <td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this testimonial? This action cannot be undone.' } %></td>
     	</div>
     </div>
 <% end %>

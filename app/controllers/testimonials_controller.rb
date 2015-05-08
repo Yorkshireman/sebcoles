@@ -6,7 +6,7 @@ class TestimonialsController < ApplicationController
 
 
   def can_edit_testimonial?
-    unless user_signed_in? && @testimonial == current_user
+    unless user_signed_in? && current_user.testimonial_owner?(@testimonial)
       redirect_to root_path, alert: 'You can only edit your own testimonial (cheeky!)'
     end
   end

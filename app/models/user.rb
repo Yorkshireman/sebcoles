@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     admin || type == "Teacher" || type == "Student" && groups.any? # So only current students can view the Materials page.
   end
 
+  def testimonial_owner?(testimonial)
+    id == testimonial.student_id
+  end
+
 end
