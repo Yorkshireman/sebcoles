@@ -2,6 +2,14 @@ class TestimonialsController < ApplicationController
   before_action :set_testimonial, only: [:show, :edit, :update, :destroy]
   before_action :user_signed_in?, except: [:index]
   before_action :student?, only: [:new]
+  before_action :can_edit_testimonial?, only: [:edit]
+
+
+  def can_edit_testimonial?
+    unless user_signed_in? && @testimonial == current_user
+      redirect_to root_path, alert: 'You can only edit your own testimonial (cheeky!)'
+    end
+  end
 
   # GET /testimonials
   # GET /testimonials.json

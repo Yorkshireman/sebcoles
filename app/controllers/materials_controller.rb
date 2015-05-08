@@ -3,7 +3,7 @@ class MaterialsController < ApplicationController
   before_action :require_authorisation_to_view_materials, only: [:index, :show]
 
 
-  def require_authorisation_to_view_materials
+  def require_authorisation_to_view_materials # For Materials Page
     unless user_signed_in? && current_user.can_view_materials?
       redirect_to root_path, alert: "You are not authorised to view the Materials page."
     end
