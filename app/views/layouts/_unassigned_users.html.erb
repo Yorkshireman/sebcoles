@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 			<% @users.newest_first.each do |user| %>
-				<% if user.type != "Student" and user.type != "Teacher" %>
+				<% if user.unassigned? %>
 					<tr>
 						<td>
 							<%= user.full_name %>

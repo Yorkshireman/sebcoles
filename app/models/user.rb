@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   	"#{first_name} #{last_name}"
   end
 
+  def unassigned?
+    type != "Student" and type != "Teacher"
+  end
+
   def can_view_materials?
     admin || type == "Teacher" || type == "Student" && groups.any? # So only current students can view the Materials page.
   end
