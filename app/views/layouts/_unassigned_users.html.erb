@@ -10,24 +10,31 @@
 			<th></th>
 		</thead>
 		<tbody>
-			<% @users.unassigned.newest_first.each do |user| %>
-				<tr>
-					<td><%= user.full_name %></td>
-					<td><%= user.email %></td>
-					<td>
-						<%= form_for(user) do |f| %>
-							<div class="field" id="unassigned_users_select_field">
-			    			<%= f.label "Student" %>
-			    			<%= f.radio_button :type, "Student" %>
-			    			<%= f.label "Teacher" %>
-			    			<%= f.radio_button :type, "Teacher" %>
-			  			</div>
-			  			<div class="actions" id="unassigned_users_submit_button">
-			    			<%= f.submit class: "btn btn-default" %>
-			  			</div>
-						<% end %>
-					</td>
-				</tr>
+			<% @users.newest_first.each do |user| %>
+				<% if user.type != "Student" and user.type != "Teacher" %>
+					<tr>
+						<td>
+							<%= user.full_name %>
+							<% if user.admin %>
+								(Admin)
+							<% end %>
+						</td>
+						<td><%= user.email %></td>
+						<td>
+							<%= form_for(user) do |f| %>
+								<div class="field" id="unassigned_users_select_field">
+				    			<%= f.label "Student" %>
+				    			<%= f.radio_button :type, "Student" %>
+				    			<%= f.label "Teacher" %>
+				    			<%= f.radio_button :type, "Teacher" %>
+				  			</div>
+				  			<div class="actions" id="unassigned_users_submit_button">
+				    			<%= f.submit class: "btn btn-default" %>
+				  			</div>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
 			<% end %>
 		</tbody>
 	</table>

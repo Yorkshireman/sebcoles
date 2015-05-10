@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :admin, inclusion: { in: [true, false] }
 
-  scope :unassigned, -> { where("type != ?", "Teacher" || "Student") }
   scope :newest_first, -> { order("created_at DESC") }
   scope :order_by_first_name, -> { order("first_name") }
 
