@@ -1,14 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h3><%= @group.title %></h3>
-<%= link_to "Edit", edit_group_path %>
+<h2>
+	<%= @group.title %>
+	<%= link_to edit_group_path do %>
+		<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+	<% end %>
+</h2>
 
 <% if @group.teacher == nil %>
 	<p>This class does not currently have a teacher.</p>
 	
-	<%= form_for @group do %>
-		<%= collection_select(:group, :teacher_id, Teacher.all, :id, :full_name, {:prompt => "Select a teacher"}) %>
-		<%= submit_tag "Update" %>
+	<%= form_for @group, :html => {:class => "edit_group form-inline"} do %> <!-- "edit_group" class is what was generated automatically before I wanted to add the bootstrap class, "form-inline", so I've manually included both classes because I didn't know how to just ADD 'form-inline' rather than replace the whole lot. -->
+		<%= collection_select(:group, :teacher_id, Teacher.all, :id, :full_name, {:prompt => "Select a teacher"}, class: "form-control") %>
+		<%= submit_tag "Update", class: "btn btn-primary" %>
 	<% end %>
 
 <% elsif @group.teacher != nil %>
@@ -17,13 +21,17 @@
 			<%= @group.teacher.full_name %>
 		<% end %>
 	</h4>
-	<%= form_tag unassign_teacher_path do %>
+	<%= form_tag unassign_teacher_path, class: "form-inline" do %>
 		<%= hidden_field_tag :group_id, @group.id %>
 		<%= hidden_field_tag :teacher_id, @group.teacher.id %>
-		<%= submit_tag "Unassign Teacher", data: { confirm: "Are you sure?" } %>
+		<%= button_tag(type: "submit", class: "btn btn-default btn-xs", data: {confirm: "Are you sure?"}) do %>
+			<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Unassign Teacher
+		<% end %>
 	<% end %>
 	
 <%end%>
+
+<br>
 
 <% if @group.students.count > 0 %>
 	<div class="panel panel-default">
@@ -57,10 +65,16 @@
 	<p>No Students! Add some:</p>
 <% end %>
 
-<%= form_tag add_student_path do %>
+<%= form_tag add_student_path, class: "form-inline" do %>
 	<%= hidden_field_tag :group_id, @group.id %>
-	<%= select_tag :student_id, options_from_collection_for_select(Student.all, :id, :full_name), include_blank: true %>
-	<%= submit_tag "Add Student" %>
+	<%= select_tag :student_id, options_from_collection_for_select(Student.all, :id, :full_name), include_blank: true, class: "form-control" %>
+	<%= button_tag(type: "submit", class: "btn btn-default") do %>
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Student
+	<% end %>
 <% end %>
 
-<%= link_to 'Back to Admin Page', admin_path %>
+<br>
+
+<%= link_to admin_path, class: "btn btn-default" do %>
+	<span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>Back to Admin Page
+<% end %>

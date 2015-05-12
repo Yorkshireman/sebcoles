@@ -1,7 +1,9 @@
 <div class="narrow-wrapper">
-	<h1>New Material</h1>
+	<h2>New Material</h2>
 
 	<%= render 'form' %>
 	<br>
-	<%= link_to 'Back', materials_path, class: 'btn btn-default' %>
+	<%= link_to materials_path, class: "btn btn-default" do %>
+	<span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>Back
+<% end %>
 </div>

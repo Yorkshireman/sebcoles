@@ -16,5 +16,7 @@
       </div>
     </div>
   <% end %>
-  <a class="btn btn-default" href="<%= new_material_path %>" role="button">Add New Material</a>
+  <%= link_to new_material_path, class: "btn btn-primary btn-sm" do %>
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Material
+  <% end %>
 </div>
