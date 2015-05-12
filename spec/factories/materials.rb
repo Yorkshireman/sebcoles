@@ -7,4 +7,8 @@ FactoryGirl.define do
 		f.description { Faker::Lorem.paragraph }
 		f.link { Faker::Internet.url }
 	end
+
+	factory :invalid_material, parent: :material do |f|
+		f.title nil
+	end
 end
