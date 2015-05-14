@@ -8,16 +8,16 @@ FactoryGirl.define do
 		f.password 		{ Faker::Internet.password(8) }
 		f.admin 		false
 
-		factory :admin do
-			admin true
-		end
-
 		factory :student do
 			type "Student"
 		end
 
 		factory :teacher do 
 			type "Teacher"
+		end
+
+		trait :admin do 
+			admin true
 		end
 	end
 end
