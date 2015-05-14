@@ -2,31 +2,40 @@
 	<h1>Welcome Text and quick blurb<small> (or ideally a photo carousel if I can get some photos of you teaching!</small></h1>
 </div>
 
-<div class="row">
-	<div class="col-md-4">
-		<h2>One Service</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+<div id="home_content">
+	<div class="row">
+		<div class="col-md-4">
+			<h3>One Service</h3>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+		</div>
+		<div class="col-md-4">
+			<h3>Another Service</h3>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+		</div>
+		<div class="col-md-4">
+			<h3>And Another Service</h3>
+			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+		</div>
 	</div>
-	<div class="col-md-4">
-		<h2>Another Service</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-	</div>
-	<div class="col-md-4">
-		<h2>And Another Service</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-6", id="contact">
-		<h3>Contact</h3>
-		<p>If you´d like a free consultation to discuss further with me, I´d love to hear from you. You can contact me by email, or feel free to call/whatsapp.</p>
-		<a href="tel:664786688">664786688</a>
-		<br>
-		<br>
-		<a class="btn btn-primary btn-lg" href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x73;&#x65;&#98;&#x61;&#115;&#x74;&#x69;&#97;&#110;&#99;&#x6f;&#x6c;&#101;&#115;&#x40;&#104;&#111;&#116;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;" role="button">Send an Email</a>
-	</div>
-	<div class="col-md-6">
-		<%= render("layouts/testimonials") %>
+	<div class="row">
+		<div class="col-md-6", id="contact">
+			<h3>Contact</h3>
+			<p class="lead">If you´d like a free consultation to discuss further with me, I´d love to hear from you. You can contact me by email, or feel free to call/whatsapp.</p>
+			<a href="tel:664786688">664786688</a>
+			<br>
+			<br>
+			<a class="btn btn-primary btn-lg" href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x73;&#x65;&#98;&#x61;&#115;&#x74;&#x69;&#97;&#110;&#99;&#x6f;&#x6c;&#101;&#115;&#x40;&#104;&#111;&#116;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;" role="button">Send an Email</a>
+		</div>
+		<div class="col-md-6">
+			<% if @testimonials.count > 0 %>
+				<h3>Testimonials</h3>
+				<%= render("layouts/testimonials") %>
+			<% elsif @testimonials.count == 0 && (user_signed_in? and current_user.type == "Student") %>
+				<h3>Testimonials</h3>
+				<p>(No testimonials yet. Why don't you write one and tell the world how awesome he is?)</p>
+				<%= link_to 'Deja Tu Opinión', new_testimonial_path, class: "btn btn-primary", role: "button" %>
+			<% end %>
+		</div>
 	</div>
 </div>

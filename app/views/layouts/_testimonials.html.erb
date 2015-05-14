@@ -1,17 +1,17 @@
-<h3>Testimonials</h3>
-
 <% @testimonials.each do |testimonial| %>
 	<div class="panel panel-default">
 	  	<div class="panel-heading">
-	  		<h4 class="panel-title"><%= testimonial.student.full_name %></h4>
+	  		<h4 class="panel-title">
+	  			<span class="glyphicon glyphicon-education" aria-hidden="true"></span><%= testimonial.student.full_name %>
+	  		</h4>
 	  	</div>
 	    <div class="panel-body">
-	    	<p><%= testimonial.content %></p>
+	    	<p class="lead"><%= testimonial.content %></p>
 		    <% if user_signed_in? && current_user.testimonial_owner?(testimonial) %>
-		    	<td><%= link_to 'Edit', edit_testimonial_path(testimonial) %></td>
+		    	<td><%= link_to 'Edit', edit_testimonial_path(testimonial), class: "btn btn-default btn-sm" %></td>
 		    <% end %>
 		    <% if user_signed_in? && (current_user.testimonial_owner?(testimonial) || current_user.admin) %>
-		    	<td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this testimonial? This action cannot be undone.' } %></td>
+		    	<td><%= link_to 'Delete', testimonial, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this testimonial? This action cannot be undone.' }, class: "btn btn-default btn-sm" %></td>
     		<% end %>
     	</div>
     </div>
@@ -19,7 +19,7 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? and current_user.type == "Student" %>
   <%= link_to 'Deja Tu Opinión', new_testimonial_path, class: "btn btn-primary", role: "button" %>
 <% end %>
 
