@@ -18,8 +18,8 @@ class StaticPagesController < ApplicationController
   private
 
   def admin?
-  	unless current_user.admin
-  		redirect_to root_path, notice: "You must be an admin to view this page"
+  	unless signed_in? and current_user.admin == true
+  		redirect_to root_path, notice: "You must be a signed-in admin to view this page"
   	end
   end
 

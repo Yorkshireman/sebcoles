@@ -6,7 +6,7 @@ FactoryGirl.define do
 		f.last_name 	{ Faker::Name.last_name }
 		f.email 		{ Faker::Internet.email }
 		f.password 		{ Faker::Internet.password(8) }
-		f.admin 		false
+		f.admin 		true
 
 		factory :student do
 			type "Student"
@@ -19,5 +19,8 @@ FactoryGirl.define do
 		trait :admin do 
 			admin true
 		end
+
+		factory :admin_user, traits: [:admin]  
+
 	end
 end
