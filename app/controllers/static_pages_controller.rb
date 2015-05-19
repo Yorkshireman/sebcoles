@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	before_action :admin?, only: [:admin]
+	# before_action :an_admin?, only: [:admin]
 
   def home
     @testimonials = Testimonial.all
@@ -17,10 +17,10 @@ class StaticPagesController < ApplicationController
 
   private
 
-  def admin?
-  	unless signed_in? and current_user.admin == true
-  		redirect_to root_path, notice: "You must be a signed-in admin to view this page"
-  	end
+  def an_admin?
+    unless signed_in? && (current_user.admin == true) 
+      redirect_to root_path, notice: "You have to be a signed-in admin to view the admin page"
+    end
   end
 
 end

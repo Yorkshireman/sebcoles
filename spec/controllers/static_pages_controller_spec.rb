@@ -11,7 +11,6 @@ describe StaticPagesController do
 
 	describe "GET #admin" do
 		it "renders the :admin view" do
-			controller.class.skip_before_action :admin?
 			get :admin 
 			expect(response).to render_template :admin
 		end

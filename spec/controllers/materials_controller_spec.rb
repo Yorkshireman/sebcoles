@@ -1,15 +1,21 @@
 require "rails_helper.rb"
 
-describe MaterialsController do 
+describe MaterialsController do
+	before :each do 
+		controller.class.skip_before_action :require_authorisation_to_view_materials
+	end 
+
+	after :each do
+		controller.class.before_action :require_authorisation_to_view_materials
+	end
 
 	describe "GET #index" do 
 		it "populates an array of materials (@materials)" do 
-			controller.class.skip_before_action :require_authorisation_to_view_materials
 			material1, material2 = (FactoryGirl.create :material), (FactoryGirl.create :material)
 			get :index
 			expect(assigns(:materials)).to eq([material1, material2])
 		end
-		# skip_before_action is still skipping it seems, needs to be switched back on manually.
+		
 		it "renders the index view" do 
 			get :index
 			expect(response).to render_template :index

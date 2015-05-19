@@ -54,4 +54,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include Devise::TestHelpers, :type => :controller
+
+  Capybara.register_driver :rack_test do |app|
+    Capybara::RackTest::Driver.new(app, :respect_data_method => true, :redirect_limit => 20)
+  end
+  
 end

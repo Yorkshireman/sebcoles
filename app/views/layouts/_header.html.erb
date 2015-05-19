@@ -30,7 +30,7 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? and current_user.admin? %>
+        <% if allowed_to_see_admin_link? %>
           <li><%= link_to "Admin", admin_path %></li>
         <% end %>
       </ul>
