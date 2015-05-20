@@ -1,13 +1,11 @@
 require 'rails_helper'
 	
-	def manually_create_user
-		visit new_user_registration_path
+	def fill_in_sign_up_form
 		fill_in('user_first_name', :with => 'Test')
 		fill_in('user_last_name', :with => 'User')
 		fill_in('user_email', :with => 'testuser@email.com')
 		fill_in('user_password', :with => 'testuser')
 		fill_in('user_password_confirmation', :with => 'testuser')
-		click_button('Sign up')
 	end
 
 	def create_and_login_user_as_a(type)
@@ -24,17 +22,15 @@ describe 'User roles' do
 	it "Login/Logout works" do
 		visit(root_path)
 		click_link("Sign up")
-		fill_in('user_email', :with => "testuser@email.com")
-		fill_in('user_first_name', :with => "Test")
-		fill_in('user_last_name', :with => "User")
-		fill_in('user_password', :with => "password")
-		fill_in('user_password_confirmation', :with => "password")
+		fill_in_sign_up_form
 		click_button "Sign up"
 		expect(current_path).to eq(root_path)
 		expect(page).to have_content('Welcome! You have signed up successfully.')
 	end
 
+
 	context "When not logged-in" do
+		
 		it "User cannot visit the admin page" do
 			visit(admin_path)
 			expect(current_path).to eq(root_path)
@@ -45,6 +41,7 @@ describe 'User roles' do
 			expect(page).to_not have_link('Admin')
 		end
 	end
+	
 
 	context "When logged-in but not an admin" do
 

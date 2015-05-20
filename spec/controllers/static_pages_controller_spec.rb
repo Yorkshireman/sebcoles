@@ -18,8 +18,7 @@ describe StaticPagesController do
 	describe "GET #home" do
 		it "renders the :home view" do
 			get :home
-			expect(response).to have_http_status(:success)
-			expect(response).to render_template :home
+			successful_render_of(:home)
 		end
 	end
 
