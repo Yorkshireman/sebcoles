@@ -9,6 +9,6 @@ FactoryGirl.define do
 	end
 
 	factory :invalid_material, parent: :material do |f|
-		f.title nil
+		f.level nil
 	end
 end

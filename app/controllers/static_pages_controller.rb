@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	# before_action :an_admin?, only: [:admin]
+	before_action :an_admin?, only: [:admin]
 
   def home
     @testimonials = Testimonial.all

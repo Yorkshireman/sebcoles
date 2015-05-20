@@ -36,11 +36,10 @@ describe 'with users and roles' do
 			expect(page).to have_content('Welcome! You have signed up successfully.')
 		end
 
-		# it "does not allow any user to visit the admin page if not logged-in" do
-		# 	visit(root_path)
-		# 	visit(admin_path)
-		# 	expect(current_path).to eq(root_path)
-		# end
+		it "does not allow any user to visit the admin page if not logged-in" do
+			visit(admin_path)
+			expect(current_path).to eq(root_path)
+		end
 
 		# it "does not allow a new user to visit the admin page" do
 		# 	manually_create_user
