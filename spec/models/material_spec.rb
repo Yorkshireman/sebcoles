@@ -22,6 +22,4 @@ describe Material do
 		expect(FactoryGirl.build(:material, link: nil)).to_not be_valid
 	end
 
-	it "is unique"
-
 end

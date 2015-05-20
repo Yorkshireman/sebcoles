@@ -10,7 +10,7 @@ require 'rails_helper'
 		click_button('Sign up')
 	end
 
-	def create_user_and_login_as(type)
+	def create_and_login_user_as_a(type)
 		user = FactoryGirl.create(type)
 		visit(new_user_session_path)
 		fill_in('user_email', :with => user.email)
@@ -19,63 +19,64 @@ require 'rails_helper'
 	end
 
 
-describe 'with users and roles' do 	
+describe 'User roles' do 	
 
-	context "if user is not an admin" do
+	it "Login/Logout works" do
+		visit(root_path)
+		click_link("Sign up")
+		fill_in('user_email', :with => "testuser@email.com")
+		fill_in('user_first_name', :with => "Test")
+		fill_in('user_last_name', :with => "User")
+		fill_in('user_password', :with => "password")
+		fill_in('user_password_confirmation', :with => "password")
+		click_button "Sign up"
+		expect(current_path).to eq(root_path)
+		expect(page).to have_content('Welcome! You have signed up successfully.')
+	end
 
-		it "makes sure Login/Logout works" do
-			visit(root_path)
-			click_link("Sign up")
-			fill_in('user_email', :with => "testuser@email.com")
-			fill_in('user_first_name', :with => "Test")
-			fill_in('user_last_name', :with => "User")
-			fill_in('user_password', :with => "password")
-			fill_in('user_password_confirmation', :with => "password")
-			click_button "Sign up"
-			expect(current_path).to eq(root_path)
-			expect(page).to have_content('Welcome! You have signed up successfully.')
-		end
-
-		it "does not allow any user to visit the admin page if not logged-in" do
+	context "When not logged-in" do
+		it "User cannot visit the admin page" do
 			visit(admin_path)
 			expect(current_path).to eq(root_path)
 		end
 
-		# it "does not allow a new user to visit the admin page" do
-		# 	manually_create_user
-		# 	visit(admin_path)
-		# 	expect(current_path).to eq(root_path)
-		# end
-
-		# it "does not allow a student to visit the admin page" do 
-		# 	create_user_and_login_as(:student)
-		# 	visit admin_path
-		# 	expect(current_path).to eq(root_path)
-		# end
-
-		# it "does not allow a teacher to visit the admin page" do 
-		# 	create_user_and_login_as(:teacher)
-		# 	visit admin_path
-		# 	expect(current_path).to eq(root_path)
-		# end
-
+		it "Admin link is not visible in header on root_path page" do
+			visit(root_path)
+			expect(page).to_not have_link('Admin')
+		end
 	end
 
-	
-	# context "if user is an admin" do
-	
-	# 	it "allows an admin user to visit the admin page" do 
-	# 		create_user_and_login_as(:admin_user)
-	# 		click_link 'Admin'
-	# 		expect(current_path).to eq(admin_path)
-	# 	end
+	context "When logged-in but not an admin" do
 
-	# 	it "allows a teacher_admin to visit the admin page" do 
-	# 		create_user_and_login_as(:teacher_admin_user)
-	# 		click_link 'Admin'
-	# 		expect(current_path).to eq(admin_path)
-	# 	end
+		it "Admin link is not visible in header on root_path page" do 
+			visit(root_path)
+			expect(page).to_not have_link('Admin')
+			create_and_login_user_as_a(:unassigned_user)
+			expect(page).to_not have_link('Admin')
+			click_link("Logout")
+			create_and_login_user_as_a(:student)
+			expect(page).to_not have_link('Admin')
+			click_link("Logout")
+			create_and_login_user_as_a(:teacher)
+			expect(page).to_not have_link('Admin')
+			click_link("Logout")
+		end
 
-	# end
+		it "User is redirected to root_path when trying to access admin page" do
+			create_and_login_user_as_a(:unassigned_user)
+			visit(admin_path)
+			expect(current_path).to eq(root_path)
+			click_link("Logout")
+			create_and_login_user_as_a(:student)
+			visit(admin_path)
+			expect(current_path).to eq(root_path)
+			click_link("Logout")
+			create_and_login_user_as_a(:teacher)
+			visit(admin_path)
+			expect(current_path).to eq(root_path)
+			click_link("Logout")
+		end
+
+	end
 
 end
