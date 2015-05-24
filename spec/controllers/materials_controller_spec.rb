@@ -53,7 +53,7 @@ describe MaterialsController do
 			it "does not create new material" do 
 				expect {
 					post :create, material: FactoryGirl.attributes_for(:invalid_material)
-				}.to_not change(Material, :count)
+					}.to_not change(Material, :count)
 			end
 
 			it "re-renders the #new method" do 
